@@ -11,6 +11,16 @@ A relational SQLite database integrated with a Python Flask web application. It 
 
 ---
 
+
+## How to Run
+
+1. **Prerequisites:** Make sure you have Python installed on your system.
+2. **Install Dependencies:** Open your terminal or command prompt in the project folder and install Flask:
+   ```bash
+   pip install flask
+
+   
+   
 ## Database Schema
 
 2 main tables connected by a foreign key relationship with the following column structures:
@@ -37,6 +47,8 @@ Stores dynamic field notes submitted by users, linked directly to the species ca
 | `note` | TEXT | User's specific field notes or observations |
 
 ---
+
+
 
 ## SQL Features Used
 
@@ -85,4 +97,12 @@ DELETE FROM observations;
 │   └── index.html    # Frontend interface with dynamic search functionality
 └── README.md         # Project documentation
 ```
+## Note to the Instructor
 
+## Note to the Instructor
+
+Dear Instructor,
+
+I would like to state that the final implementation of this project slightly deviates from the initial project report, and there are some minor changes in the application. I sincerely apologize for these modifications from the original plan.
+
+Thank you for your time and understanding.
