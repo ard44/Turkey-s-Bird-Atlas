@@ -48,6 +48,9 @@ Stores dynamic field notes submitted by users, linked directly to the species ca
 
 ---
 
+
+
+
 ## Sample Queries
 
 ```sql
@@ -62,6 +65,18 @@ VALUES (?, ?);
 
 -- Clearing the observations table upon initialization to reset the session
 DELETE FROM observations;
+```
+## Data Sources
+
+- [eBird](https://ebird.org) — Cornell Lab of Ornithology
+- [KuşBank](https://www.kusbank.org) — DHKD Turkey
+- [IUCN Red List](https://www.iucnredlist.org)
+  ---
+
+
+## Files
+```
+
 /
 ├── app.py            # Main Flask application and SQLite connection logic
 ├── schema.sql        # Database schema (CREATE TABLE & relationships)
@@ -69,9 +84,5 @@ DELETE FROM observations;
 ├── templates/
 │   └── index.html    # Frontend interface with dynamic search functionality
 └── README.md         # Project documentation
+```
 
-## Data Sources
-
-- [eBird](https://ebird.org) — Cornell Lab of Ornithology
-- [KuşBank](https://www.kusbank.org) — DHKD Turkey
-- [IUCN Red List](https://www.iucnredlist.org)
