@@ -7,11 +7,11 @@ cursor = conn.cursor()
 import csv
 import sqlite3
 
-# Veritabanına bağlan
+
 conn = sqlite3.connect('bird_atlas.db')
 cursor = conn.cursor()
 
-# Tabloyu oluştur (Eski tabloyu temizleyip yenisini kuruyoruz)
+
 cursor.execute('DROP TABLE IF EXISTS species')
 cursor.execute('''
     CREATE TABLE species (
@@ -25,7 +25,7 @@ cursor.execute('''
     )
 ''')
 
-# CSV'den verileri oku ve ekle
+
 with open('kuslar.csv', encoding='utf-8-sig', newline='') as f:
     reader = csv.DictReader(f, delimiter=';')
     for row in reader:
