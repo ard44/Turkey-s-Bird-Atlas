@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Türkiye Kuş Atlası</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #4CAF50; color: white; }
+        #searchInput { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; font-size: 16px; }
+        .delete-btn { color: red; font-size: 0.8em; text-decoration: none; margin-left: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Türkiye Kuş Atlası</h1>
+
+    <form action="/add_observation" method="POST">
+        <select name="bird_id">
+            {% for bird in birds %}
+                <option value="{{ bird.id }}">{{ bird.name_tr }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="note" placeholder="Notunuzu yazın..." required>
+        <button type="submit">Gözlemi Kaydet</button>
+    </form>
+
+    <hr>
+
+    <h2>Gözlemlerim</h2>
+    <ul>
+        {% for ob in observations %}
+            <li>
+                <strong>{{ ob.name_tr }}</strong>: {{ ob.note }}
+                <a href="/delete/{{ ob.id }}" class="delete-btn">[Sil]</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h2>Tüm Kuş Türleri</h2>
+    <input type="text" id="searchInput" onkeyup="searchBirds()" placeholder="Kuş ismi ara...">
+
+    <table id="birdTable">
+        <tr>
+            <th>Türkçe Adı</th>
+            <th>Bilimsel Adı</th>
+            <th>Habitat</th>
+            <th>Bölgeler</th>
+            <th>IUCN Durumu</th>
+        </tr>
+        {% for bird in birds %}
+        <tr>
+            <td>{{ bird.name_tr }}</td>
+            <td>{{ bird.name_latin }}</td>
+            <td>{{ bird.habitat_name }}</td>
+            <td>{{ bird.region_name }}</td>
+            <td>{{ bird.conservation_status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+    function searchBirds() {
+        let input = document.getElementById("searchInput").value.toLowerCase();
+        let table = document.getElementById("birdTable");
+        let tr = table.getElementsByTagName("tr");
+        for (let i = 1; i < tr.length; i++) {
+            let td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                tr[i].style.display = td.textContent.toLowerCase().indexOf(input) > -1 ? "" : "none";
+            }
+        }
+    }
+    </script>
+</body>
+</html>
